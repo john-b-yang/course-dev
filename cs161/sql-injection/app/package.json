@@ -1,0 +1,12 @@
+{
+  "name": "sql-injection-demo",
+  "version": "1.0.0",
+  "description": "A simple application for demoing how sql injection attacks work",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "*",
+    "ejs": "*",
+    "sqlite3": "*"
+  }
+}

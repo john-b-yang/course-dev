@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div class="box">
+  <div class="masthead">
+    <h1>Oski Bank 🐻</h1>
+  </div>
+</div>
+
+<div class="box">
+  <form class="border-box" action="/login" method="post">
+    <div class="container">
+      <div style="padding-bottom: 5px;">
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+      </div>
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <button type="submit">Login</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  if(document.location.hash === '#unauthorized') {
+      document.write('<div class="box"><div class="unauthorized">Invalid Username or Password</div></div>');
+  } else if(document.location.hash === '#error') {
+      document.write('<div class="error">An error has occured</div>');
+  }
+</script>
+
+</body>
+</html>
