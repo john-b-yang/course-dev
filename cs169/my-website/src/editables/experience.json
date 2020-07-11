@@ -1,0 +1,53 @@
+[{
+  "section_title": "Work Experience",
+  "section_data": [
+    {
+      "header": "CS 169",
+      "header_link": "https://google.com",
+      "title": "Software Engineer Intern",
+      "second_right_align": "May 2020 - August 2020",
+      "first_right_align": "Berkeley, California",
+      "details": [
+        "Incoming!"
+      ]
+    }
+  ]
+},
+{
+  "section_title": "Leadership Experience",
+  "section_data": [
+    {
+      "header": "<Organization Here>",
+      "header_link": "https://ugba198.com",
+      "title": "Co-founder and Instructor",
+      "second_right_align": "",
+      "first_right_align": "September 2017 - Present",
+      "details": [
+        "Cofounded with one other student one of the most popular ML courses at Berkeley (200+ signups).",
+        "Responsibilities included content generation, lecturing, and facilitating"
+      ]
+    },
+  ]
+},
+{
+  "section_title": "Other Experience",
+  "section_data": [
+    {
+      "header": "Undergraduate Research",
+      "header_link": "",
+      "title": "",
+      "second_right_align": "",
+      "first_right_align": "January 2017 - May 2017",
+      "details": [
+        "Worked with Professor Josh Hug to utilize Machine Learning libraries to intelligently analyze Congressional transcripts (SPCA), annotated and cleaned large CSV files with Pandas to make them more usable and to add relevant meta data to the files. Other tech includes Scipy, Numpy etc."
+      ]
+    }
+  ]
+},
+{
+  "section_title": "Skills and Interests",
+  "section_data": [
+
+  ]
+}
+]

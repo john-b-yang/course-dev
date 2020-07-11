@@ -1,0 +1,19 @@
+[{
+  "school": "University of California, Berkeley",
+  "school_link": "https://berkeley.edu",
+  "year": "<Starting Month/Year> - <Ending Month/Year>",
+  "sections" : [
+  	{
+  		"section_title": "",
+  		"section_content": "B.A./B.S. <Concentration Here>"
+  	},
+  	{
+  		"section_title": "GPA: ",
+  		"section_content": "<GPA Here>"
+  	},
+  	{
+  		"section_title": "Relevant Coursework: ",
+  		"section_content": "<Courses Here>"
+  	}
+  ]
+}]
