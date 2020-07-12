@@ -1,4 +1,6 @@
 # CS 161: Computer Security
+Course Site: https://cs161.org
+
 We've all seen one form or another of a cliche Hollywood hacking scene where surreptitious perpetrators throw up their hands in wicked excitement, "I'm In!"
 
 <img src="https://i.kym-cdn.com/entries/icons/facebook/000/031/991/cover3.jpg" width="250px"/>
