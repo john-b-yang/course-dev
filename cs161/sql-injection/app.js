@@ -19,14 +19,14 @@ db.serialize(function() {
 app.post('/login', function (req, res) {
     var username = req.body.username; // a valid username is Oski, Dirks
     var password = req.body.password; // a valid password is cs161rulezzz, ilikefences
-    var query = "SELECT name, balance, owed FROM user where username = '" + username + "' and password = '" + password + "'";
-
+    var query = "SELECT name, balance, owed FROM user WHERE username = '" + username + "' and password = '" + password + "'";
+    
     console.log("-------");
     console.log("username: " + username);
     console.log("password: " + password);
     console.log('query: ' + query);
 
-    db.get(query , function(err, row) {
+    db.get(query, function(err, row) {
         if(err) {
             console.log('ERROR', err);
             res.redirect("/index.html#error");
