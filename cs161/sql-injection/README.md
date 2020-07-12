@@ -77,7 +77,6 @@ Even though our password is wrong, the `'1'='1` evaluates to true no matter what
 
 Can you think of any other malicious queries? If you do, feel free to create a PR and add your own to this README!
 </details>
-<br>
 <details>
 <summary>How can we rewrite the SQL query such that this error doesn't occur?</summary>
 <br>
