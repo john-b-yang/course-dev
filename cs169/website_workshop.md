@@ -1,5 +1,5 @@
 # Personal Website Workshop
-Delivered
+Delivered 7/10/2020
 
 ### GitHub Pages
 We need a website to host the code for our personal website. There's a variety of ways you can do this. The hosting site we will use is GitHub Pages ([link](https://pages.github.com/)). The link contains directions for how to set up the repository.
