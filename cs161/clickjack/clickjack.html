@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            iframe {
+                opacity: 1;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: -20px;
+                z-index: -1;
+            }
+
+            .overlay {
+                z-index: 1000;
+            }
+
+            .overlay button {
+                background-color: Transparent;
+                border: none;
+                outline: none;
+                padding: 1000px;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe src="index.html"></iframe>
+        <div class="overlay">
+            <button onclick="clickjacked()">
+            </button>
+        </div>
+        <script>
+            function clickjacked() {
+                alert("Uh oh, you've been clickjacked!");
+            }
+        </script>
+    </body>
+</html>
