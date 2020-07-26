@@ -16,6 +16,9 @@
         </div>
 
         <script>
+            if (top != window) {
+                top.location = window.location;
+            }
             function submitForm() {
                 alert("You have been logged in!");
             }
