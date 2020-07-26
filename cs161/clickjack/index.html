@@ -5,8 +5,9 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <div class="login-page">
-            <div class="login-wrapper">
+        <div class="page">
+            <div class="wrapper">
+                <h2 style="color:#0075C4;">Oski Bank Login</h2>
                 <form id="login-form">
                     <input type="text" placeholder="username"/>
                     <input type="password" placeholder="password"/>
@@ -14,13 +15,38 @@
                 </form>
             </div>
         </div>
-
+        <div class="page">
+            <div class="wrapper">
+                Request a referral at this
+                <span style="color:#0075C4;" onclick="submitReferral()">
+                    link
+                </span>
+            </div>
+        </div>
+        <div class="page">
+            <div class="wrapper">
+                <h3>🐻<br>UC Broccoli's<br>#1 University Banking System</h3>
+                <p>
+                    &#9733; &#9733; &#9733; &#9733; &#9733;<br>
+                    Great customer service and response time!<br>
+                    - Cool Dude 2
+                </p>
+                <p>
+                    &#9733; &#9733; &#9733; &#9733; &#9734;<br>
+                    24/7 access to funds + free lollipops!<br>
+                    - Oski Bear
+                </p>
+                <br>
+                <hr>
+                Copyright &#169; 2020 UC Broccoli
+            </div>
+        </div>
         <script>
-            if (top != window) {
-                top.location = window.location;
-            }
             function submitForm() {
-                alert("You have been logged in!");
+                alert("You would be logged in!");
+            }
+            function submitReferral() {
+                alert("You would be forwarded to a referral form!")
             }
         </script>
     </body>
