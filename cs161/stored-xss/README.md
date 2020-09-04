@@ -25,6 +25,8 @@ When you navigate to http://0.0.0.0:5000/, hopefully you will see a working, alb
 
 The app starts off with no posts. However, you can create a couple by filling in the *Create Post* form. If you interrupt the app, the data will still be there when you restart.
 
+After you input a comment, a *Clear Posts* button should pop up. You can reset the comments you've entered by clicking that button.
+
 ## The Attack
 
 Okay. Let's say you are acting on behalf of an unscrupulous student consulting club, and in order to solicit more members, you want to force everyone who visits the site to see an announcement.
@@ -42,7 +44,17 @@ The reason submitting such JavaScript code works is because the input values are
 ## Explanation
 
 So what's going on? After a user submits input, this is what's happening step by step:
+1. Line 37 of `index.html`: When a comment is submitted, the *name* and *comment* inputs are sent to the `comment` endpoint.
+2. Line 41-44 of `app.py`: This is where the inpt values are fed into the database. It's clear that the inputs are not checked for scripting before being stored.
+3. Line 22 of `index.html`: When the index page is rerendered, the comments are printed to the webpage. Just fyi, the `safe` filter explicitly marks a string as *safe*, which indicates the string sholdn't be automatically escape (without it, our XSS attack wouldn't work!)
+
+## Defenses
+
+The three primary ways to prevent XSS all involve sanitizing the input or interpretting in a manner that prevents suspicious characters from being rendered.
+* Escape: Ensure received data is "secure" before rendering it; "secure" means devoid of key characters (i.e. <, >).
+* Validating Input: Use an allow or block list to check whether inputs abide by a certain value (i.e. use Regex Patterns!)
+* Sanitize: Scrub your database of illegal characters from time to time!
 
 ## Credit
-
-TBD
+* OWASP [Definition](https://owasp.org/www-community/attacks/xss/)
+* HackUCF [Demo](https://github.com/HackUCF/xss-demo) by Mark Ignacio
