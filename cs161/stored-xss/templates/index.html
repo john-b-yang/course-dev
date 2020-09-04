@@ -1,4 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hi</h1>
+<header>
+    <h1>Student Clubs Bulletin Board</h1>
+</header>
+
+<div>
+    <section>
+        <h2>Welcome to UC Broccoli's 🥦 Online Bulletin Board for student clubs</h2>
+        <p>Please respect the student ethics and code of conducts when posting.</p>
+    </section>
+
+    <section>
+        <h4>Posts</h4>
+        {% if not posts %}
+            <p>No posts thus far...</p>
+        {% else %}
+        {% endif %}
+
+        {% for post in posts %}
+        {% endfor %}
+    </section>
+</div>
 {% endblock %}
