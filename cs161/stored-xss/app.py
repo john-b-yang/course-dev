@@ -6,9 +6,9 @@ from flask import Flask, redirect, render_template, request, url_for
 
 CREATE_QUERY = "CREATE table IF NOT EXISTS comments (id integer primary key, name TEXT, comment TEXT)"
 
-conn = sqlite3.connect('db.sqlite3')
-conn.execute(CREATE_QUERY)
-conn.close()
+conn_ = sqlite3.connect('db.sqlite3')
+conn_.execute(CREATE_QUERY)
+conn_.close()
 
 app = Flask(__name__)
 
@@ -39,6 +39,7 @@ def clear():
 @app.route('/comment', methods=['POST'])
 def comment():
     name, text = request.form['name'], request.form['comment']
+    conn = sqlite3.connect('db.sqlite3')
     with conn:
         conn.execute('INSERT INTO comments(name, comment) values (?, ?)', (name, text))
     conn.commit()
