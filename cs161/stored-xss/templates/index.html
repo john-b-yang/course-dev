@@ -2,6 +2,7 @@
 {% block content %}
 <header>
     <h1>Student Clubs Bulletin Board</h1>
+    <hr />
 </header>
 
 <div>
@@ -15,10 +16,20 @@
         {% if not posts %}
             <p>No posts thus far...</p>
         {% else %}
+            <form id="clear" action="{{ url_for('clear') }}" method="post">
+                <input value="Clear Posts" type="submit"/>
+            </form>
         {% endif %}
 
         {% for post in posts %}
+            <div>
+                <p>{{ post.name }} says:</p>
+                <p>{{ post.comment }}</p>
+            </div>
         {% endfor %}
     </section>
+
+    <form id="comment" action="{{ url_for('comment') }}" method="post">
+    </form>
 </div>
 {% endblock %}

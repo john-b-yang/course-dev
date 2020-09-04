@@ -27,6 +27,24 @@ def index():
     conn.close()
     return render_template('index.html', posts=comments)
 
+@app.route('/clear', methods=['GET', 'POST'])
+def clear():
+    conn = sqlite3.connect('db.sqlite3')
+    with conn:
+        conn.execute('DELETE FROM comments')
+    conn.commit()
+    conn.close()
+    return redirect(url_for('index'))
+
+@app.route('/comment', methods=['POST'])
+def comment():
+    name, text = request.form['name'], request.form['comment']
+    with conn:
+        conn.execute('INSERT INTO comments(name, comment) values (?, ?)', (name, text))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('index'))
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
