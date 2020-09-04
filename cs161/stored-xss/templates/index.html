@@ -1,41 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
 <header>
-    <h1>Student Clubs Bulletin Board</h1>
+    <h1>UC Broccoli 🥦 Bulletin Board</h1>
     <hr />
 </header>
 
 <div>
-    <section>
-        <h2>Welcome to UC Broccoli's 🥦 Online Bulletin Board for student clubs</h2>
+    <div>
+        <p>Welcome to the University of California Broccoli's Online Bulletin Board for student clubs</p>
         <p>Please respect the student ethics and code of conducts when posting.</p>
-    </section>
+    </div>
+    <hr />
+    
+    <h2>Posts</h2>
+    {% if not posts %}
+    <p>No posts thus far...</p>
+    {% endif %}
 
-    <section>
-        <h4>Posts</h4>
-        {% if not posts %}
-            <p>No posts thus far...</p>
-        {% else %}
-            <form id="clear" action="{{ url_for('clear') }}" method="post">
-                <input value="Clear Posts" type="submit"/>
-            </form>
-        {% endif %}
+    {% for post in posts %}
+    <div>
+        <p><i>{{ post.name }}</i> says: {{ post.comment }}</p>
+    </div>
+    {% endfor %}
 
-        {% for post in posts %}
-            <div>
-                <p><b>{{ post.name }}</b> says: {{ post.comment }}</p>
-            </div>
-        {% endfor %}
-    </section>
-
-    <form id="comment" action="{{ url_for('comment') }}" method="post">
-        <fieldset>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" placeholder="Johnny Appleseed"><br><br>
-            <label for="comment">Comment:</label><br>
-            <textarea type="text" id="comment" name="comment" placeholder="Write your post or comment here."></textarea><br><br>
-            <input type="submit" value="Submit">
-        </fieldset>
+    {% if posts %}
+    <form id="clear" action="{{ url_for('clear') }}" method="post">
+        <input value="Clear Posts" type="submit"/>
     </form>
+    {% endif %}
+    <br>
+    <hr />
+
+    <div class="page">
+        <h3>Create Post</h3>
+        <div class="wrapper">
+            <form id="comment" action="{{ url_for('comment') }}" method="post">
+                <fieldset>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" placeholder="Johnny Appleseed"><br><br>
+                    <label for="comment">Comment:</label><br>
+                    <textarea type="text" id="comment" name="comment" placeholder="Write your post or comment here." rows="5" cols="60"></textarea><br><br>
+                    <input type="submit" value="Submit">
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
