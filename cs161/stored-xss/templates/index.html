@@ -19,7 +19,7 @@
 
     {% for post in posts %}
     <div>
-        <p><i>{{ post.name }}</i> says: {{ post.comment }}</p>
+        <p><i>{{ post.name }}</i> says: {{ post.comment|safe }}</p>
     </div>
     {% endfor %}
 
