@@ -25,7 +25,20 @@ app.listen(3000, function() {
 var accounts = [{username: 'bob', password: 'bob'}, {username: 'alice', password: 'alice'}];
 var balances = {bob: '500', alice: '500'};
 
-// Log In Routes
+// MARK: Home Page Routes
+
+// requiredLogin | Helper function for requiring login for home page route
+var requiredLogin = function(req, res, next) {
+  if (!req.session.user) { return res.redirect('/login'); } // Redirect non-logged in to login page
+  next(); // If here, just continue
+}
+
+app.get('/', requiredLogin, function(req, res, next) {
+  let user = req.session.user.name;
+  res.render('home', { username: user, balance: balances[user] || 0 });
+});
+
+// MARK: Log In Routes
 // NOTE: This is a very weak login system, but is needed to mimic generating a
 // session cookie, a certificate of authenticity that is targeted by CSRF attacks.
 app.get('/login', function(req, res, next) {
@@ -51,4 +64,4 @@ app.post('/login', function(req, res, next) {
     req.session.user = { name: user.username };
     res.redirect('/');
   });
-})
+});
