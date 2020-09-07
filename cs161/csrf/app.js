@@ -1,11 +1,15 @@
 // Module Imports
 var _ = require('underscore');
+var BigNumber = require('bignumber.js')
 var bodyParser = require('body-parser');
 var express = require('express');
 var exphbr = require('express-handlebars');
 var session = require('express-session');
 
-// Initialize Express App
+// ----------------------------
+// MARK: Express App Initialization Begins Here
+// ----------------------------
+
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false })); // Helps w/ parsing data from HTML forms
 app.use(session({
@@ -25,7 +29,9 @@ app.listen(3000, function() {
 var accounts = [{username: 'bob', password: 'bob'}, {username: 'alice', password: 'alice'}];
 var balances = {bob: '500', alice: '500'};
 
-// MARK: Home Page Routes
+// ----------------------------
+// MARK: 'Home' Page Routing Begins Here
+// ----------------------------
 
 // requiredLogin | Helper function for requiring login for home page route
 var requiredLogin = function(req, res, next) {
@@ -38,9 +44,13 @@ app.get('/', requiredLogin, function(req, res, next) {
   res.render('home', { username: user, balance: balances[user] || 0 });
 });
 
-// MARK: Log In Routes
+// ----------------------------
+// MARK: 'Log In' Page Routing Begins Here
+// ----------------------------
+
 // NOTE: This is a very weak login system, but is needed to mimic generating a
 // session cookie, a certificate of authenticity that is targeted by CSRF attacks.
+
 app.get('/login', function(req, res, next) {
   res.render('login');
 });
@@ -54,7 +64,7 @@ app.post('/login', function(req, res, next) {
   });
   if (!user) { return res.status(400).send('Username, password combination not found'); }
 
-  // If here: Login is valid! Let's create a cookie.
+  // If here: Login is valid! Session cookie is created.
   req.session.regenerate(function(error) {
     if (error) {
       // Something happened when generating a new token for a fresh user session...
@@ -64,4 +74,44 @@ app.post('/login', function(req, res, next) {
     req.session.user = { name: user.username };
     res.redirect('/');
   });
+});
+
+// ----------------------------
+// MARK: 'Transfer' Page Routing Begins Here
+// ----------------------------
+
+// transferAmount | Helper function for validating and performing a transfer of funds
+var transferFunds = function(to, from, amount, cb) {
+  // Checks if given parameters are valid for executing transfer
+  if (!to || !balances[to]) return cb(new Error('Specified "To" account does not exist'));
+  if (!from || !balances[from]) return cb(new Error('Specified "From" account does not exist'));
+  if (!amount) return cb(new Error('Amount not specified'));
+
+  try { amount = new BigNumber(amount); }
+  catch (error) { return cb(new Error('Amount must be a number')); }
+
+  // If here: Exchange can be performed.
+  balances[to] = (new BigNumber(balances[to])).plus(amount).toString();
+  balances[from] = (new BigNumber(balances[to])).plus(amount).toString();
+
+  console.log(amount+'transferred from ('+from+') to ('+to+')');
+  console.log('New Balances: '+JSON.stringify(balances, null, 2));
+  cb();
+}
+
+// GET, POST requests to transfer endpoint are handled identically
+app.get('/transfer/', requiredLogin, function(req, res, next) {
+  transferFunds(req.query.to, req.session.user.name, req.query.amount,
+    function(error) {
+      if (error) { return res.status(400).send(error.message); }
+      res.redirect('/');
+    });
+});
+
+app.post('/transfer', requiredLogin, function(req, res, next) {
+  transferFunds(req.query.to, req.session.user.name, req.query.amount,
+    function(error) {
+      if (error) { return res.status(400).send(error.message); }
+      res.redirect('/');
+    });
 });
