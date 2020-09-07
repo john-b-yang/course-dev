@@ -1,0 +1,27 @@
+{
+    "name": "csrf-demo",
+    "version": "1.0.0",
+    "description": "Demonstration of a CSRF attack on a demo website.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node app.js"
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/john-b-yang/course-dev"
+    },
+    "author": {
+        "name": "John Yang"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "bignumber.js": "4.0.0",
+        "body-parser": "1.16.1",
+        "express": "4.14.1",
+        "express-handlebars": "3.0.0",
+        "express-session": "1.15.1",
+        "serve-static": "1.11.2",
+        "underscore": "1.8.3"
+    }
+}
