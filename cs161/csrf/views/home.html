@@ -1,0 +1,8 @@
+<p>Welcome, {{ username }}</p>
+<p>You currently have a balance of <code>{{ balance }}</code> in your account.</p>
+<p>Use the form below to transfer funds to another account.</p>
+<form action="/transfer" method="GET">
+  <label>Account: <input type="text" name="to" value=""></label>
+  <label>Amount: <input type="text" name="amount" value=""></label>
+  <input type="submit" value="Transfer">
+</form>
