@@ -1,13 +1,15 @@
-
 <div class="page">
   <div class="wrapper">
-    <p>Welcome, {{ username }}</p>
+    <h2>Welcome, {{ username }}</h2>
     <p>You currently have a balance of <code>{{ balance }}</code> in your account.</p>
     <p>Use the following form to transfer funds to another account.</p>
     <form action="/transfer" method="GET">
-      <input type="text" name="to" placeholder="Alice">
+      <input type="text" name="to" placeholder="Alice, Bob">
       <input type="text" name="amount" placeholder="100">
       <input type="submit" value="Transfer">
+    </form>
+    <form action="/login" method="GET">
+      <input type="submit" value="Back to Login">
     </form>
   </div>
 </div>

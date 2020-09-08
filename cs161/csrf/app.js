@@ -6,6 +6,10 @@ var express = require('express');
 var exphbr = require('express-handlebars');
 var session = require('express-session');
 
+// ****************************
+// PART I: Banking Application Code
+// ****************************
+
 // ----------------------------
 // MARK: Express App Initialization Begins Here
 // ----------------------------
@@ -27,7 +31,7 @@ app.listen(3000, function() {
 
 // Valid Accounts, Balances (In real systems, these values would be in a MySQL, PostgreSQL DB)
 var accounts = [{username: 'Bob', password: 'Bob'}, {username: 'Alice', password: 'Alice'}];
-var balances = {Bob: '500', Alice: '500'};
+var balances = {'Bob': '500', 'Alice': '500'};
 
 // ----------------------------
 // MARK: 'Home' Page Routing Begins Here
@@ -90,9 +94,11 @@ var transferFunds = function(to, from, amount, cb) {
   try { amount = new BigNumber(amount); }
   catch (error) { return cb(new Error('Amount must be a number')); }
 
+  if (amount < 0) { return cb(new Error('Amount must be greater than or equal to 0')); }
+
   // If here: Exchange can be performed.
   balances[to] = (new BigNumber(balances[to])).plus(amount).toString();
-  balances[from] = (new BigNumber(balances[to])).plus(amount).toString();
+  balances[from] = (new BigNumber(balances[from])).minus(amount).toString();
 
   console.log(amount+'transferred from ('+from+') to ('+to+')');
   console.log('New Balances: '+JSON.stringify(balances, null, 2));
@@ -114,4 +120,24 @@ app.post('/transfer', requiredLogin, function(req, res, next) {
       if (error) { return res.status(400).send(error.message); }
       res.redirect('/');
     });
+});
+
+// ****************************
+// PART I: CSRF Attack Demo
+// ****************************
+
+// ----------------------------
+// MARK: Express App Initialization Begins Here
+// ----------------------------
+
+var csrfApp = express();
+csrfApp.engine('html', exphbr({ defaultLayout: 'main', extname: '.html' }));
+csrfApp.set('view engine', 'html');
+
+csrfApp.listen(3001, function() {
+    console.log('Malicious server started successfully, listening at localhost:3001');
+});
+
+csrfApp.get('/', function(req, res, next) {
+  res.render('attack');
 });
