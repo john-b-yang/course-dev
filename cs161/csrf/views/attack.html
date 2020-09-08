@@ -1,10 +1,16 @@
 <div class="page">
   <div class="wrapper">
     <h2>Possible Exploits</h2>
-    <p>As evident in the `app.js` code, there are both GET and POST request types for the transfer call. A CSRF attacker that causes a user to unknowingly invoke calls to any one of these routes would be successful. Two possible exploits are demonstrated below.</p>
+    <p>As evident in the <code>app.js`</code> code, there are both GET and POST request types for the transfer call.
+    A CSRF attacker that causes a user to unknowingly invoke calls to any one of these routes would be successful.
+    Two possible exploits are demonstrated below.</p>
+    <p>For the below exploits, make sure the app is running at <a href="http://127.0.0.1:3000" target="_blank">Port 3000</a>, and you are logged in as "Bob" so you can observe the effects right after each attack is executed.</p>
+    <p>TODO</p>
     <h3>Exploit GET Route</h3>
-
+    <p>TODO</p>
     <h3>Exploiting POST route</h3>
-    
+    <p>To target the <code>POST /transfer</code> route, a malicious attacker can simply create a fake HTML form that submits a bunch of hidden fields that provides the values needed to perform the unintentional transfer.</p>
+    <p>TODO</p>
+    <input type="button" value="Open Bank App" style="background:#4c5caf" onclick="window.open('http://127.0.0.1:3000')">
   </div>
 </div>

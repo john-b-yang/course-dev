@@ -123,7 +123,7 @@ app.post('/transfer', requiredLogin, function(req, res, next) {
 });
 
 // ****************************
-// PART I: CSRF Attack Demo
+// PART II: CSRF Attack Demo
 // ****************************
 
 // ----------------------------
