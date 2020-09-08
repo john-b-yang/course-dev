@@ -17,7 +17,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   cookie: { secure: false, httpOnly: false }
-})); // Session Middleware: Inroduce statefulness across requests
+})); // Session Middleware: Introduce statefulness across requests
 app.engine('html', exphbr({ defaultLayout: 'main', extname: '.html' })); // Enables Templating Logic
 app.set('view engine', 'html');
 
@@ -26,8 +26,8 @@ app.listen(3000, function() {
 });
 
 // Valid Accounts, Balances (In real systems, these values would be in a MySQL, PostgreSQL DB)
-var accounts = [{username: 'bob', password: 'bob'}, {username: 'alice', password: 'alice'}];
-var balances = {bob: '500', alice: '500'};
+var accounts = [{username: 'Bob', password: 'Bob'}, {username: 'Alice', password: 'Alice'}];
+var balances = {Bob: '500', Alice: '500'};
 
 // ----------------------------
 // MARK: 'Home' Page Routing Begins Here
