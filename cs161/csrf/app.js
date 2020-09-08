@@ -45,7 +45,7 @@ var requiredLogin = function(req, res, next) {
 
 app.get('/', requiredLogin, function(req, res, next) {
   let user = req.session.user.name;
-  res.render('home', { username: user, balance: balances[user] || 0 });
+  res.render('home', { username: user, balance: balances[user] || 0, balances: balances });
 });
 
 // ----------------------------

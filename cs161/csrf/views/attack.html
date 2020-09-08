@@ -1,16 +1,30 @@
 <div class="page">
   <div class="wrapper">
     <h2>Possible Exploits</h2>
-    <p>As evident in the <code>app.js`</code> code, there are both GET and POST request types for the transfer call.
-    A CSRF attacker that causes a user to unknowingly invoke calls to any one of these routes would be successful.
-    Two possible exploits are demonstrated below.</p>
-    <p>For the below exploits, make sure the app is running at <a href="http://127.0.0.1:3000" target="_blank">Port 3000</a>, and you are logged in as "Bob" so you can observe the effects right after each attack is executed.</p>
-    <p>TODO</p>
+    <p>As evident in the <code>app.js</code> code, there are both GET and POST request types for the transfer call.
+      A CSRF attacker that causes a user to unknowingly invoke calls to any one of these routes would be successful.
+      Two possible exploits are demonstrated below.</p>
+    <p>For the below exploits, make sure the app is running at <a href="http://127.0.0.1:3000" target="_blank">Port 3000</a>,
+      and you are logged in as "Bob" so you can observe the effects right after each attack is executed.</p>
+    <hr />
     <h3>Exploit GET Route</h3>
-    <p>TODO</p>
+    <p>The GET request is relatively easier to exploit. The route does not expect any non-URL parameters to be provided alongside the
+      request, unlike for POST. Hence, we can plug in the relevant values for <code>tranfer</code> in the hardcoded link itself.</p>
+    <p>To get the user to fire the malicious GET request and have it executed with their permissions (a.k.a. their session cookie),
+      we disguise the link as a clickable button or image, with the <code>ref</code> or <code>link</code> attribute defined as
+      the exploit.</p>
+    <p>Below, we have a button, disguised as a redirect with a malicious link pointing at
+      <code>http://localhost:3000/transfer?to=Alice&amount=50</code>. See what happens to Bob's balance after clicking the link.</p>
+    <a href="http://localhost:3000/transfer?to=Alice&amount=50"><button>Download Free Movie Here!!!</button></a>
+    <br>
+    <hr />
     <h3>Exploiting POST route</h3>
     <p>To target the <code>POST /transfer</code> route, a malicious attacker can simply create a fake HTML form that submits a bunch of hidden fields that provides the values needed to perform the unintentional transfer.</p>
     <p>TODO</p>
+    <hr />
+    <p>CSRF Attacks can be combined and integrated with other web exploits like clickjacking or phishing to make a victim click
+      a seemingly harmless link. But appearances can be devicing, are often are in web security. More context and defenses are
+      provided in the README.</p>
     <input type="button" value="Open Bank App" style="background:#4c5caf" onclick="window.open('http://127.0.0.1:3000')">
   </div>
 </div>
