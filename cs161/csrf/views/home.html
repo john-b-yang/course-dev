@@ -10,6 +10,7 @@
     <form action="/transfer" method="POST">
       <input type="text" name="to" placeholder="i.e. Alice">
       <input type="text" name="amount" placeholder="i.e. 100">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
       <input type="submit" value="Transfer" style="background:#4caf50">
     </form>
     <hr />

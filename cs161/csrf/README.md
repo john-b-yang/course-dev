@@ -21,6 +21,7 @@ Malicious server started successfully, listening at localhost:3001
 * `app.js`: The backend Javascript code which initializes both the banking app and the malicious app:
   * The code for the banking app itself begins on line 10
   * The code for the malicious CSRF code begins on line 126.
+* `app-fix.js`: Contains the fixed code, no longer vulnerable to CSRF attacks (thanks to CSRF Tokens).
 * `views`: The front end bells and whistles + app logic
   * `attack.html`: Malicious code + explanations.
   * `home.html`: Bank account displaying user's balance and form for transferring funds.
@@ -49,6 +50,11 @@ The idea is as follows:
   * If the tokens don't match, the request is invalid.
 
 Another popular approach is same site cookies, which is derivative of the same origin policy. The idea here is that cookies can only be sent if a request is made from the origin related to the cookie. With this defense, form submissions coming from http://localhost:3001 would no longer be valid since the targeted cookie was created on the login page at http://localhost:3000.
+
+## Example Fix
+The `app-fix.js` contains the fixed version of this code. The main fix involves using the `csurf` library to introduce the use of CSRF Tokens. For the `/` and `transfer` routes, we've added a new `csrfProtection` variable, which abstracts the aforementioned logic of a web server comparing its stored token to the request token. We also include the token in the HTML form for transferring funds on the home page. The files changed are `home.html` and `app.js` (now `app-fix.js`).
+
+If you'd like to run the working app to see the protection in effect, just make sure `app.js` is no longer running, then run `node app-fix.js`.
 
 ## Resources
 * Robust Defenses for Cross Site Request Forgery ([link](https://seclab.stanford.edu/websec/csrf/csrf.pdf))
